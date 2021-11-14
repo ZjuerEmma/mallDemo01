@@ -7,7 +7,7 @@ const {
     handlePassword
 } = require('../middleware/user.middleware')
 
-const userRouter = new Router({ prefix: '/users' })
+const userRouter = new Router({ prefix: '/api/users' })
 
 userRouter.post('/', verifyUser, handlePassword, create)
 
