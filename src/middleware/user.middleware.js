@@ -5,7 +5,7 @@ const md5password = require('../utils/password-handle')
 
 const verifyUser = async (ctx, next) => {
     const { name, password } = ctx.request.body
-console.log(name, password)
+
     if (!name || !password) {
         const error = new Error(errorType.NAME_OR_PASSWORD_IS_REQUIRED)
         return ctx.app.emit('error', error, ctx)

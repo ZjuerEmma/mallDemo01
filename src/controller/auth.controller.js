@@ -8,11 +8,13 @@ class AuthController {
             expiresIn: 60 * 60 * 24,
             algorithm: 'RS256'
         })
-
         ctx.body = {
-            id,
+            code: 0,
+            data: {
+              id,
             name,
             token
+            }
         }
     }
 

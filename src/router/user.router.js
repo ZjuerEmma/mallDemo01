@@ -1,15 +1,22 @@
 const Router = require('koa-router')
 
-const { create } = require('../controller/user.controller')
+const { create, userInfo, list, userMenu, deleteUserName,updateUsercellphone } = require('../controller/user.controller')
+const { verifyAuth } = require('../middleware/auth.middleware')
 
 const {
     verifyUser,
     handlePassword
 } = require('../middleware/user.middleware')
 
-const userRouter = new Router({ prefix: '/api/users' })
+const userRouter = new Router({ prefix: '/user' })
 
-userRouter.post('/', verifyUser, handlePassword, create)
+userRouter.post('/', verifyUser, create)
+userRouter.get('/:userId', verifyAuth, userInfo)
+userRouter.post('/list',verifyAuth, list)
+userRouter.get('/:userId/menu', verifyAuth, userMenu)
+userRouter.patch('/:userName',verifyAuth, updateUsercellphone)
+userRouter.delete('/:userName', verifyAuth, deleteUserName)
+
 
 
 module.exports = userRouter

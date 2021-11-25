@@ -8,15 +8,16 @@ const { PUBLIC_KEY } = require('../app/config')
 
 const verifyLogin = async (ctx, next) => {
     const { name, password } = ctx.request.body
-
+    console.log(name, password)
     //2. 判断用户密码是否为空
     if (!name || !password) {
         const error = new Error(errorType.NAME_OR_PASSWORD_IS_REQUIRED)
         return ctx.app.emit('error', error, ctx)
     }
     //3 判断用户是否存在
+
     const  result = await Service.getUserByName(name)
-    const user = result[0]
+    const user = result
     console.log(user)
     if (!user) {
         const error = new Error(errorType.USER_NOT_EXISTS);
@@ -24,10 +25,15 @@ const verifyLogin = async (ctx, next) => {
     }
 
     //判断密码是否和数据库中一致（加密后的密码）
-    if (md5password(password) !== user.password) {
-        const error = new Error(errorType.PASSWORD_IS_INCORRECT)
-        return ctx.app.emit('error', error, ctx)
-    }
+    // if (md5password(password) !== user.password) {
+    //     const error = new Error(errorType.PASSWORD_IS_INCORRECT)
+    //     return ctx.app.emit('error', error, ctx)
+    // }
+    //取消加密
+    if (password !== user.password) {
+      const error = new Error(errorType.PASSWORD_IS_INCORRECT)
+      return ctx.app.emit('error', error, ctx)
+  }
 
     ctx.user = user
 
@@ -49,7 +55,9 @@ const verifyAuth = async (ctx, next) => {
             algorithms: ['RS256']
         })
 
+        console.log('============auth.middleware')
         ctx.user = result
+
         await next()
 
     // try {

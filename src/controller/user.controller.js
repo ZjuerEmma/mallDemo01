@@ -13,6 +13,52 @@ class UserController {
         ctx.body = result
     }
 
+    async userInfo(ctx, next) {
+      const { userId } = ctx.params
+      const result = await service.getUserById(userId)
+      ctx.body = {
+        code: 0,
+        data: result
+      }
+    }
+
+    async list(ctx, next) {
+      const queryInfo = ctx.request.body
+      const result = await service.getUserList(queryInfo)
+      ctx.body = {
+        code: 0,
+        data: result
+      }
+    }
+
+    async updateUsercellphone(ctx, next) {
+      const { userName } = ctx.params
+      const { cellphone } = ctx.request.body
+      const result = await service.updateUsercellphoneByUserName(userName, cellphone)
+      ctx.body = {
+        code: 0,
+        data: result
+      }
+    }
+
+    async userMenu(ctx,next) {
+
+      const { userId } = ctx.params
+      const result = await service.getUserMenu(userId)
+      ctx.body = {
+        code: 0,
+        data: result
+      }
+    }
+
+    async deleteUserName(ctx, next) {
+      const { userName } = ctx.params
+      const result = await service.deleteByUserName(userName)
+      ctx.body = {
+        code: 1,
+        data: result
+      }
+    }
     // async avatarInfo(ctx, next) {
     //     const { userId } = ctx.params
 

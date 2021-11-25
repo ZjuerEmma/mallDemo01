@@ -11,8 +11,9 @@ const {
 
 const authRouter = new Router()
 
-authRouter.post('/api/login',verifyLogin, login )
-authRouter.get('/api/test', verifyAuth, success)
+authRouter.post('/login',verifyLogin, login )
+authRouter.get('/test', verifyAuth, success)
+authRouter.get('/1', success)
 
 
 module.exports = authRouter
