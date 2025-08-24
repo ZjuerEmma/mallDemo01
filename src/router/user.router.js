@@ -8,7 +8,7 @@ const {
     handlePassword
 } = require('../middleware/user.middleware')
 
-const userRouter = new Router({ prefix: '/user' })
+const userRouter = new Router({ prefix: `${process.env.ROUTER_PREFIX}/admin/user` })
 
 userRouter.post('/', verifyUser, create)
 userRouter.get('/:userId', verifyAuth, userInfo)

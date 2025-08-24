@@ -13,7 +13,7 @@ const {
 
 const { verifyAuth } = require('../middleware/auth.middleware')
 
-const couponRouter = new Router({ prefix: '/coupon' })
+const couponRouter = new Router({ prefix: `${process.env.ROUTER_PREFIX}/coupon` })
 
 // 获取商户可用优惠券列表
 couponRouter.get('/merchant/:merchantId', getMerchantCoupons)

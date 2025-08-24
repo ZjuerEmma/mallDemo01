@@ -12,7 +12,7 @@ const {
 
 const { verifyAuth } = require('../middleware/auth.middleware')
 
-const activityRouter = new Router({ prefix: '/activity' })
+const activityRouter = new Router({ prefix: `${process.env.ROUTER_PREFIX}/activity` })
 
 // 获取活动分类列表
 activityRouter.get('/categories', getActivityCategories)

@@ -12,7 +12,8 @@ const {
 
 const { verifyAuth } = require('../middleware/auth.middleware')
 
-const merchantRouter = new Router({ prefix: '/merchant' })
+const merchantRouter = new Router({ prefix: `${process.env.ROUTER_PREFIX}/merchant` })
+console.log('merchantRouter', `${process.env.ROUTER_PREFIX}/merchant`);
 
 // 获取热门商户分类
 merchantRouter.get('/categories/hot', getHotMerchantCategories)

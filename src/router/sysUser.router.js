@@ -14,7 +14,7 @@ const {
 
 const { verifyAuth } = require('../middleware/auth.middleware')
 
-const sysUserRouter = new Router({ prefix: '/user' })
+const sysUserRouter = new Router({ prefix: `${process.env.ROUTER_PREFIX}/user` })
 
 // 微信登录（无需认证）
 sysUserRouter.post('/wechat-login', wechatLogin)

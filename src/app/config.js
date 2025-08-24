@@ -8,6 +8,7 @@ console.log('dotenv 配置文件路径:', path.resolve(__dirname, '../../.env'))
 
 const PRIVATE_KEY = fs.readFileSync(path.resolve(__dirname, './keys/private.key'))
 const PUBLIC_KEY = fs.readFileSync(path.resolve(__dirname, './keys/public.key'))
+console.log(1233, process.env.ROUTER_PREFIX, process.env.APP_PORT, process.env.MYSQL_HOST, process.env.MYSQL_PORT, process.env.MYSQL_DATABASE, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, process.env.WECHAT_APP_ID, process.env.WECHAT_APP_SECRET, process.env.WECHAT_REDIRECT_URI, process.env.ROUTER_PREFIX);
 
 const {
     APP_HOST,
@@ -20,6 +21,7 @@ const {
     WECHAT_APP_ID,
     WECHAT_APP_SECRET,
     WECHAT_REDIRECT_URI,
+    ROUTER_PREFIX,
 } = process.env
 
 // const {
@@ -55,6 +57,7 @@ module.exports = {
     WECHAT_APP_ID,
     WECHAT_APP_SECRET,
     WECHAT_REDIRECT_URI,
+    ROUTER_PREFIX,
 }
 
 module.exports.PRIVATE_KEY = PRIVATE_KEY

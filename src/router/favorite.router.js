@@ -13,7 +13,7 @@ const {
 
 const { verifyAuth } = require('../middleware/auth.middleware')
 
-const favoriteRouter = new Router({ prefix: '/favorite' })
+const favoriteRouter = new Router({ prefix: `${process.env.ROUTER_PREFIX}/favorite` })
 
 // 所有收藏接口都需要认证
 favoriteRouter.use(verifyAuth)

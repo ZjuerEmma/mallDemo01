@@ -10,7 +10,7 @@ const {
     getConfig
 } = require('../controller/wechat.controller')
 
-const wechatRouter = new Router({ prefix: '/wechat' })
+const wechatRouter = new Router({ prefix: `${process.env.ROUTER_PREFIX}/wechat` })
 
 // 获取微信配置信息
 wechatRouter.get('/config', getConfig)

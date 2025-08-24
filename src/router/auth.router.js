@@ -9,7 +9,7 @@ const {
     verifyAuth
  } = require('../middleware/auth.middleware')
 
-const authRouter = new Router()
+const authRouter = new Router({ prefix: `${process.env.ROUTER_PREFIX}/auth` })
 
 authRouter.post('/login',verifyLogin, login )
 authRouter.get('/test', verifyAuth, success)

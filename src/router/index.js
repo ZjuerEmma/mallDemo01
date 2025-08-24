@@ -5,9 +5,10 @@ const useRoutes = (app) => {
         if (file === 'index.js') return
 
         const router = require(`./${file}`)
+        // app.use('/cpi', router.routes())
+        // app.use('/cpi', router.allowedMethods())
         app.use(router.routes())
         app.use(router.allowedMethods())
-
     })
 }
 

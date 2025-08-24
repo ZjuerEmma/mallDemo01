@@ -102,9 +102,7 @@ class MerchantService {
             LIMIT ? OFFSET ?
         `
         
-        console.log('dataStatement', dataStatement, size, offset);
         const dataParams = [...params, String(size), String(offset)]
-        console.log('dataParams', dataParams);
         const [dataResult] = await connection.execute(dataStatement, dataParams)
         // const dataResult = []
 

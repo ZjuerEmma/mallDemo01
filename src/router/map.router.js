@@ -10,7 +10,7 @@ const {
     getMapData
 } = require('../controller/map.controller')
 
-const mapRouter = new Router({ prefix: '/map' })
+const mapRouter = new Router({ prefix: `${process.env.ROUTER_PREFIX}/map` })
 
 // 获取附近的商户
 mapRouter.get('/nearby/merchants', getNearbyMerchants)
