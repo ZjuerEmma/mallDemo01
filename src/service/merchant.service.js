@@ -49,14 +49,14 @@ class MerchantService {
         }
 
         // 地理位置筛选（如果有经纬度和半径）
-        if (query.latitude && query.longitude && query.radius) {
-            whereConditions.push(`
-                (6371 * acos(cos(radians(?)) * cos(radians(m.latitude)) * 
-                cos(radians(m.longitude) - radians(?)) + 
-                sin(radians(?)) * sin(radians(m.latitude)))) <= ?
-            `)
-            params.push(query.latitude, query.longitude, query.latitude, query.radius / 1000)
-        }
+        // if (query.latitude && query.longitude && query.radius) {
+        //     whereConditions.push(`
+        //         (6371 * acos(cos(radians(?)) * cos(radians(m.latitude)) * 
+        //         cos(radians(m.longitude) - radians(?)) + 
+        //         sin(radians(?)) * sin(radians(m.latitude)))) <= ?
+        //     `)
+        //     params.push(query.latitude, query.longitude, query.latitude, query.radius / 1000)
+        // }
 
         const whereClause = whereConditions.join(' AND ')
 
@@ -68,6 +68,9 @@ class MerchantService {
         `
         const [countResult] = await connection.execute(countStatement, params)
         const total = countResult[0].total
+        
+        console.log('total', total, params);
+        
 
         // 查询数据 - 创建新的参数数组避免污染
         const dataStatement = `
@@ -99,8 +102,11 @@ class MerchantService {
             LIMIT ? OFFSET ?
         `
         
-        const dataParams = [...params, size, offset]
+        console.log('dataStatement', dataStatement, size, offset);
+        const dataParams = [...params, String(size), String(offset)]
+        console.log('dataParams', dataParams);
         const [dataResult] = await connection.execute(dataStatement, dataParams)
+        // const dataResult = []
 
         return {
             records: dataResult,
